@@ -90,18 +90,8 @@ FROM ProjectCovid.coviddeaths
 WHERE continent <> ''
 ORDER BY 1,2;
 
--- ALTER TABLE ProjectCovid.covidvaccinations
--- MODIFY date DATE;
 
--- SELECT *
--- FROM ProjectCovid.covidvaccinations
--- ORDER BY date DESC;
-
--- SELECT *
--- FROM ProjectCovid.coviddeaths
--- ORDER BY date DESC;
-
--- Lookin at Total Population vs Vaccinations
+-- Looking at Total Population vs Vaccinations
 
 SELECT dea.continent, dea.location, dea.date, dea.population, cast(vac.new_vaccinations AS SIGNED) AS new_vaccinations,
 SUM(cast(vac.new_vaccinations AS SIGNED)) OVER (PARTITION BY dea.location ORDER BY dea.location, dea.date) AS RollingPeopleVaccinated
